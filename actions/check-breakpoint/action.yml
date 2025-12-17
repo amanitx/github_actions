@@ -1,0 +1,19 @@
+name: Check for breakpoint
+description: Composite Action to check for breakpoints
+
+inputs:
+  exclude:
+    required: false
+    description: list of directories to exclude separated by comma
+    default: "env,venv"
+
+runs:
+  using: composite
+  steps:
+    - name: Check for breakpoints
+      run: |
+        if grep -rnw --exclude-dir={${{inputs.exclude}}} --include='*.py' -e "breakpoint"; then
+          echo "❌ Breakpoints found in code. Remove them to proceed."
+          exit 1
+        fi
+      shell: bash

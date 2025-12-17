@@ -19,3 +19,6 @@ jobs:
         uses: amanitx/github_actions/actions-demo@main
         with:
           who-to-greet: Everyone!
+
+      - name: Check Breakpoint
+        uses: amanitx/github_actions/actions/check-breakpoint@main
